@@ -1,0 +1,50 @@
+name: Build Extension
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  release:
+    types: [ published ]
+  pull_request:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add nuget to PATH
+        uses: nuget/setup-nuget@v2
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: calculate version
+        run: |
+          $version = git describe --tags
+          $stripped_version = $version -replace '^v(\d+\.\d+\.\d+).*$', '$1'
+          echo $stripped_version
+          echo "version=$stripped_version" >> $env:GITHUB_ENV
+      - name: Apply version
+        run: |
+          (Get-Content .\source.extension.vsixmanifest).Replace('0.0.0', '${{ env.version }}') | Set-Content .\source.extension.vsixmanifest
+          (Get-Content .\source.extension.cs).Replace('0.0.0', '${{ env.version }}') | Set-Content .\source.extension.cs
+      - name: Mark as Preview
+        if: github.event_name != 'release' || github.event.release.prerelease
+        run: (Get-Content .\source.extension.vsixmanifest).Replace('<Preview>false</Preview>', '<Preview>true</Preview>') | Set-Content .\source.extension.vsixmanifest
+      - name: Restore
+        run: nuget restore
+      - name: Build Extension
+        run: MSBuild PyDjinni.sln /t:Build /p:Configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal
+      - name: Upload package
+        if: github.event_name != 'release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pydjinni-vs-extension
+          path: bin/Release/PyDjinni.vsix
+      - name: Publish extension to Marketplace
+        uses: cezarypiatek/VsixPublisherAction@1.1
+        if: github.event_name == 'release'
+        with:
+          extension-file: bin\Release\PyDjinni.vsix
+          publish-manifest-file: vs-publish.json
+          personal-access-code: ${{ secrets.VS_PUBLISHER_ACCESS_TOKEN }}
