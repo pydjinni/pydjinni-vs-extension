@@ -1,2 +1,2 @@
-# pydjinni-vs-extension
-Visual Studio PyDjinni extension
+# PyDjinni Visual Studio Extension
+

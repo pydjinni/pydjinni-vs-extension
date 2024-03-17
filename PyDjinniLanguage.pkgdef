@@ -1,0 +1,12 @@
+// Registering the TextMate grammar
+[$RootKey$\TextMate\Repositories]
+"PyDjinni"="$PackageFolder$\Syntaxes"
+
+// Defines where the language configuration file for a given
+// grammar name is (value of the ScopeName tag in the tmlanguage file).
+[$RootKey$\TextMate\LanguageConfiguration\GrammarMapping]
+"text.pydjinni"="$PackageFolder$\language-configuration.json"
+
+; Match file extensions with icons. See full icon list at https://glyphlist.azurewebsites.net/knownmonikers/
+[$RootKey$\ShellFileAssociations\.pydjinni]
+"DefaultIconMoniker"="c499b7e2-20ba-4e07-9140-b942a13033e8:0"

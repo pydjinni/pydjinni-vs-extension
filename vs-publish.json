@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/vsix-publish",
+    "categories": [ "build", "coding" ],
+    "identity": {
+        "internalName": "PyDjinni"
+      
+    },
+    "overview": "README.md",
+    "priceCategory": "free",
+    "publisher": "PyDjinni",
+    "private": false,
+    "qna": true,
+    "repo": "https://github.com/pydjinni/pydjinni-vs-extension"
+}
