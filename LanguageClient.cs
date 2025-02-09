@@ -58,6 +58,14 @@ namespace PyDjinni
             {
                 arguments.AddRange(["--log", "pydjinni_lsp.log"]);
             }
+            if (General.Instance.GenerateOnSave)
+            {
+                arguments.Add("--generate-on-save");
+            }
+            if (General.Instance.GenerateBasePath != "")
+            {
+                arguments.AddRange(["--generate-base-path", General.Instance.GenerateBasePath]);
+            }
 
             Process process = new()
             {
