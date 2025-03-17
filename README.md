@@ -21,3 +21,5 @@ pip install pydjinni
 * 🎯 Jump to definition
 * ⚠️ Deprecation warnings
 * ℹ️ Type documentation on hover
+* 📋 File outline
+* 💾 Automatically generate code on save
