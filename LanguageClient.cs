@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.LanguageServer.Client;
+﻿using Microsoft.Build.Framework.XamlTypes;
+using Microsoft.VisualStudio.LanguageServer.Client;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.Utilities;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace PyDjinni
 
         private async void OnSettingsSaved(General general)
         {
-
             await StopAsync.InvokeAsync(this, EventArgs.Empty);
             await StartAsync.InvokeAsync(this, EventArgs.Empty);
         }
@@ -34,7 +34,7 @@ namespace PyDjinni
 
         public bool ShowNotificationOnInitializeFailed => true;
 
-        public IEnumerable<string> FilesToWatch => [General.Instance.ConfigurationFile, "**/*.pydjinni"];
+        public IEnumerable<string> FilesToWatch => ["pydjinni.yaml", "**/*.pydjinni"];
 
         public object InitializationOptions => null;
 
@@ -53,18 +53,10 @@ namespace PyDjinni
         {
             await Task.Yield();
 
-            var arguments = new List<string> { "--connection", "STDIO", "--config", General.Instance.ConfigurationFile };
+            var arguments = new List<string> { "--connection", "STDIO" };
             if (General.Instance.DebugLogsEnabled)
             {
-                arguments.AddRange(["--log", "pydjinni_lsp.log"]);
-            }
-            if (General.Instance.GenerateOnSave)
-            {
-                arguments.Add("--generate-on-save");
-            }
-            if (General.Instance.GenerateBasePath != "")
-            {
-                arguments.AddRange(["--generate-base-path", General.Instance.GenerateBasePath]);
+                arguments.AddRange(["--log", "pydjinni-language-server.log"]);
             }
 
             Process process = new()

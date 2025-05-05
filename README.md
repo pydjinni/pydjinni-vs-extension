@@ -23,3 +23,23 @@ pip install pydjinni
 * ℹ️ Type documentation on hover
 * 📋 File outline
 * 💾 Automatically generate code on save
+* 🤖 IntelliSense support for type and language target completion
+
+## Configuration
+
+### Global Language Server Settings
+
+Global PyDjinni Language server settings can be found under: <kbd>Tools</kbd> > <kbd>Options</kbd> > <kbd>PyDjinni</kbd> > <kbd>General</kbd>
+
+### Project Specific Settings
+
+In order to customize project specific settings, add a `VSWorkspaceSettings.json` to the root of the project:
+
+```json
+{
+  // Path to the PyDjinni configuration file
+  "pydjinni.config": "pydjinni.yaml",
+  // Whether to run the PyDjinni generator on file save
+  "pydjinni.generateOnSave": false
+}
+```

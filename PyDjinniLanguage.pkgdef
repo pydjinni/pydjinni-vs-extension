@@ -10,3 +10,6 @@
 ; Match file extensions with icons. See full icon list at https://glyphlist.azurewebsites.net/knownmonikers/
 [$RootKey$\ShellFileAssociations\.pydjinni]
 "DefaultIconMoniker"="c499b7e2-20ba-4e07-9140-b942a13033e8:0"
+
+[$RootKey$\OpenFolder\Settings\VSWorkspaceSettings\PyDjinniLanguage]
+@="$PackageFolder$\PyDjinniLanguageSettings.json"
