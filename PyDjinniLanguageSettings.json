@@ -1,0 +1,4 @@
+{
+  "pydjinni.config": "pydjinni.yaml",
+  "pydjinni.generateOnSave": false
+}

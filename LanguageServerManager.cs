@@ -147,13 +147,13 @@ namespace PyDjinni
             if (!IsInstalled)
             {
                 var model = new InfoBarModel(
-                    new[] {
+                    [
                         new InfoBarTextSpan("PyDjinni Language Server cannot be found."),
                         new InfoBarTextSpan("   "),
                         new InfoBarHyperlink(INSTALL_ACTION),
                         new InfoBarTextSpan("   "),
                         new InfoBarHyperlink(SETTINGS_ACTION)
-                    },
+                    ],
                     KnownMonikers.StatusWarning,
                     true);
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
