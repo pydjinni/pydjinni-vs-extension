@@ -29,13 +29,13 @@ pip install pydjinni
 
 ### Global Language Server Settings
 
-Global PyDjinni Language server settings can be found under: <kbd>Tools</kbd> > <kbd>Options</kbd> > <kbd>PyDjinni</kbd> > <kbd>General</kbd>
+Global PyDjinni Language server settings can be found under: **Tools | Options | PyDjinni | General**
 
 ### Project Specific Settings
 
 In order to customize project specific settings, add a `VSWorkspaceSettings.json` to the root of the project:
 
-```json
+```jsonc
 {
   // Path to the PyDjinni configuration file
   "pydjinni.config": "pydjinni.yaml",
