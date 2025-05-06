@@ -435,7 +435,7 @@
                 <key>name</key>
                 <string>entity.name.tag</string>
                 <key>match</key>
-                <string>\+[\w]+</string>
+                <string>([+-][\w]+)</string>
             </dict>
             <key>punctuation_terminator</key>
             <dict>
