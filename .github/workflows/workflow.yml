@@ -37,7 +37,7 @@ jobs:
         run: MSBuild PyDjinni.sln /t:Build /p:Configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal
       - name: Upload package
         if: github.event_name != 'release'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: pydjinni-vs-extension
           path: bin/Release/PyDjinni.vsix
